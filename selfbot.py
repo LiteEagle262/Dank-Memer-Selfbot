@@ -1,6 +1,5 @@
 import discord
 from discord.ext import commands
-from discord.utils import get
 import ctypes
 import json
 import asyncio
@@ -8,8 +7,14 @@ import asyncio
 ##--Simple Dank Memer autofarm selfbot--##
 
 prefix = "!!"
-
-bot = commands.Bot(prefix, self_bot=True)
+bot = discord.Client()
+bot = commands.Bot(
+    command_prefix=prefix,
+    case_insensitive=True,
+    help_command=None,
+    auto_reconnect=True,
+    self_bot=True
+)
 
 ctypes.windll.kernel32.SetConsoleTitleW("Made by LiteEagle262 | liteeagle.me")
 
@@ -37,7 +42,7 @@ async def on_ready():
 @bot.command(pass_context=True)
 async def dankfarm(ctx):
     await ctx.message.delete()
-    await ctx.send('auto dank memer is now **enabled**!')
+    await ctx.send('Dank Farmer **Started**')
     global dmcs
     dmcs = True
     while dmcs:
@@ -53,4 +58,4 @@ async def dankfarm(ctx):
             print(f"{Fore.GREEN}succefully deposited all")
             await asyncio.sleep(47)
 
-bot.run(token, bot=False)
+bot.run(token)
