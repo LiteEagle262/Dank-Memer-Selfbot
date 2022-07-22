@@ -7,13 +7,9 @@ import asyncio
 
 ##--Simple Dank Memer autofarm selfbot--##
 
-with open('config.json') as f:
-    config = json.load(f)
+prefix = "!!"
 
-token = config.get('token')
-prefix = config.get('prefix')
-
-bot = commands.Bot(config.preifx, self_bot=True)
+bot = commands.Bot(prefix, self_bot=True)
 
 ctypes.windll.kernel32.SetConsoleTitleW("Made by LiteEagle262 | liteeagle.me")
 
@@ -33,15 +29,15 @@ async def on_ready():
                                      To Power Off the bot Close This terminal
                                   If the bot doesnt work it meens your token is wrong
 
-                                  To edit the token and config do so in config.json
+                                  To start the bot Please insert your token Below
 
     """)
+    token = input("Please Paste your token ->>") 
 
-@bot.command(pass_context=True)):
+@bot.command(pass_context=True)
 async def dankfarm(ctx):
     await ctx.message.delete()
     await ctx.send('auto dank memer is now **enabled**!')
-    print(' Auto Dank Started')
     global dmcs
     dmcs = True
     while dmcs:
